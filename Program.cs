@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProcesadorConsole
@@ -11,12 +11,13 @@ namespace ProcesadorConsole
     { 
         public static void Main()
         {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             Ejecutor oEjecutor = new Ejecutor();
-
-            Thread hilo1 = new Thread(oEjecutor.ProcesarArchivo1);
-            hilo1.Start();
-            Thread hilo2 = new Thread(oEjecutor.ProcesarArchivo2);
-            hilo2.Start();
+            oEjecutor.ProcesarArchivo();
+            stopWatch.Stop();
+            TimeSpan tiempoTranscurrido = stopWatch.Elapsed;
+            Console.WriteLine($"Segundos {tiempoTranscurrido.Seconds} - Milisegundos {tiempoTranscurrido.Milliseconds}");
 
             Console.ReadKey();
         }

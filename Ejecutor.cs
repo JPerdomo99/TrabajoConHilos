@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProcesadorConsole
@@ -16,21 +15,23 @@ namespace ProcesadorConsole
         // NUM_CUENTA: PI: 31, PF: 39
         // NUM_CHEQUE: PI: 46, PF: 51
         // COD_SEG: PI: 61 PF: 66
-
-        private DetalleEstructura detalle1 = new DetalleEstructura("COD_CLIENTE", 1, 2);
-        private DetalleEstructura detalle2 = new DetalleEstructura("COD_PROD", 11, 13);
-        private DetalleEstructura detalle3 = new DetalleEstructura("NUM_CUENTA", 20, 28);
-        private DetalleEstructura detalle4 = new DetalleEstructura("NUM_CHEQUE", 32, 37);
-        private DetalleEstructura detalle5 = new DetalleEstructura("COD_SEG", 41, 46);
-
-        private UTF8Encoding utf8 = new UTF8Encoding();
-
-        public void ProcesarArchivo1()
+        public void ProcesarArchivo()
         {
+            DetalleEstructura detalle1 = new DetalleEstructura("COD_CLIENTE", 1, 2);
+            DetalleEstructura detalle2 = new DetalleEstructura("COD_PROD", 11, 13);
+            DetalleEstructura detalle3 = new DetalleEstructura("NUM_CUENTA", 20, 28);
+            DetalleEstructura detalle4 = new DetalleEstructura("NUM_CHEQUE", 32, 37);
+            DetalleEstructura detalle5 = new DetalleEstructura("COD_SEG", 41, 46);
+
             string path = @"C:\Users\ateho\Desktop\ArchivoPruebaCargueBase.txt";
+            #region PrimerFichero
             string pathRE = $@"C:\Users\ateho\Desktop\RE_{ConstruirFechaHora()}.txt";
-            FileStream respuesta = File.Create(pathRE);
+            string pathPR = $@"C:\Users\ateho\Desktop\PR_{ConstruirFechaHora()}.txt";
             string[] lineasArchivo = File.ReadAllLines(path);
+            FileStream respuesta = File.Create(pathRE);
+            FileStream produccion = File.Create(pathPR);
+
+            UTF8Encoding utf8 = new UTF8Encoding();
 
             foreach (var linea in lineasArchivo)
             {
@@ -64,18 +65,13 @@ namespace ProcesadorConsole
                 catch (NotSupportedException e)
                 {
                     Console.WriteLine($"Escritura no permitida {e}");
-                }
-                Thread.Sleep(0);
-            } 
-        }
+                }           
+            }
+            #endregion
 
-        public void ProcesarArchivo2()
-        {   
-            string path = @"C:\Users\ateho\Desktop\ArchivoPruebaCargueBase.txt";
-            string pathPR = $@"C:\Users\ateho\Desktop\PR_{ConstruirFechaHora()}.txt";
-            FileStream produccion = File.Create(pathPR);
-            string[] lineasArchivo = File.ReadAllLines(path);
+            Console.WriteLine("segundo fichero---------------------------------------------------------------------");
 
+            #region SegundoFichero
             string nombreCliente = "Carmen";
             string direccionCliente = "Calle 27 # 7 - 68";
             string descripcionProducto = "Alcohol 70º 100ml";
@@ -92,7 +88,7 @@ namespace ProcesadorConsole
                 {
                     if (existe == false)
                         if (codigoProducto == producto)
-                            existe = true;
+                            existe = true;            
                 }
 
                 if (!existe)
@@ -131,8 +127,8 @@ namespace ProcesadorConsole
                         Console.WriteLine($"Escritura no permitida {e}");
                     }
                 }
-                Thread.Sleep(0);
             }
+            #endregion
         }
 
         private string ConstruirString(char [] caracteres, DetalleEstructura detalleEstructura)
@@ -165,12 +161,6 @@ namespace ProcesadorConsole
     }
 }
 
-// COD_CLIENT     COD_PROD       NUM_CUENT      NUM_CHEQ       COD_SEG
-// 01             10             010100001      000001         535231
-// 01             10             010100001      000002         732295    
-// Codigo cliente; numero cuenta; numero cheque; cod seg; codsegcalculado 
-
-// Codigo cliente;Nombre Cliente;Direccion cliente;Codigo Producto;Descripcion Producto;Numero cuenta;Numero Cheque;Cod Seg;Cod SegCalc;Fecha generacion
 // COD_CLIENT     COD_PROD       NUM_CUENT      NUM_CHEQ       COD_SEG
 // 01             10             010100001      000001         535231
 // 01             10             010100001      000002         732295    
