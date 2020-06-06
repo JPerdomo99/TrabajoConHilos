@@ -1,0 +1,7 @@
+C:\Users\ateho\source\repos\JDPA_Solution\ProcesadorConsole\bin\Debug\ProcesadorConsole.exe.config
+C:\Users\ateho\source\repos\JDPA_Solution\ProcesadorConsole\bin\Debug\ProcesadorConsole.exe
+C:\Users\ateho\source\repos\JDPA_Solution\ProcesadorConsole\bin\Debug\ProcesadorConsole.pdb
+C:\Users\ateho\source\repos\JDPA_Solution\ProcesadorConsole\obj\Debug\ProcesadorArchivoConsole.csprojAssemblyReference.cache
+C:\Users\ateho\source\repos\JDPA_Solution\ProcesadorConsole\obj\Debug\ProcesadorArchivoConsole.csproj.CoreCompileInputs.cache
+C:\Users\ateho\source\repos\JDPA_Solution\ProcesadorConsole\obj\Debug\ProcesadorConsole.exe
+C:\Users\ateho\source\repos\JDPA_Solution\ProcesadorConsole\obj\Debug\ProcesadorConsole.pdb
